@@ -1,0 +1,15 @@
+version: '3.8'
+volumes:
+  mongodbdata:
+services:
+  mongo:
+    container_name: mongo
+    image: mongodb/mongodb-community-server:7.0.1-ubi9
+    restart: always
+    volumes:
+      - mongodbdata:/data/db
+    env_file:
+      - ./mongo/.env
+    ports:
+      - '27017:27017'
+
