@@ -1,9 +1,9 @@
 import express from 'express';
-import { initDb } from './database';
+import { connect as connectToDb } from './database';
 import { init as initEnv } from './environment';
 
 initEnv();
-initDb();
-
-const app = express();
-app.listen(process.env.PORT);
+connectToDb().then(() => {
+  const app = express();
+  app.listen(process.env.PORT);
+});
