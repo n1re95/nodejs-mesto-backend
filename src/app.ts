@@ -1,9 +1,15 @@
 import express from 'express';
 import { connect as connectToDb } from './database';
 import { init as initEnv } from './environment';
+import { userRouter } from './routes';
 
-initEnv();
-connectToDb().then(() => {
+const main = async () => {
+  initEnv();
+  await connectToDb();
   const app = express();
-  app.listen(process.env.PORT);
-});
+  app.use(express.json());
+  app.listen(3000);
+  app.use('/user', userRouter);
+};
+
+main();
