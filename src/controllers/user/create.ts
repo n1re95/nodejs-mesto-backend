@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { User, type IUser } from '../../models/user';
 
-export const create = async (req: Request<IUser>, res: Response) => {
+export const create = async (req: Request<{}, {}, IUser>, res: Response) => {
   try {
     const { body } = req;
     const user = new User({
