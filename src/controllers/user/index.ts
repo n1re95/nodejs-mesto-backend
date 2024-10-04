@@ -1,4 +1,4 @@
 export * from './create';
-export * from './get';
+export * from './get-one';
 export * from './list';
 export * from './remove';
