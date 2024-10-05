@@ -11,6 +11,6 @@ const router = express.Router();
 router.post('/', create);
 router.get('/', list);
 router.delete('/:id', remove);
-router.patch('/:id/like', like);
+router.put('/:id/like', like);
 
 export const cardsRouter = router;
