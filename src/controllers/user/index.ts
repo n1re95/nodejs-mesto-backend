@@ -1,4 +1,4 @@
 export * from './create';
 export * from './get-one';
 export * from './list';
-export * from './remove';
+export * from './update-avatar';
