@@ -5,4 +5,4 @@ import { checkAuth } from '../middleware';
 export const router = express.Router();
 
 router.use(checkAuth);
-router.use('/user', userRouter);
+router.use('/users', userRouter);
