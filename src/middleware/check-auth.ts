@@ -9,7 +9,7 @@ declare module 'express-serve-static-core' {
 
 export const checkAuth: RequestHandler = (req, res, next): void => {
   req.user = {
-    _id: '66f7e444256fcf2c5a574496',
+    _id: '66f31c43c3d9eb313ccecd7a',
   };
   next();
 };
