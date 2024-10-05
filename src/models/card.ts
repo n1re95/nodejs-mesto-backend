@@ -4,17 +4,23 @@ const { ObjectId } = Schema.Types;
 
 interface ICard {
   name: string;
-  about: string;
-  avatar: string;
+  link: string;
+  owner: mongoose.Types.ObjectId;
+  likes?: mongoose.Types.ObjectId[];
+  createdAt: string;
+  updatedAt: string;
 }
 
-const cardSchema = new Schema({
+const cardSchema = new Schema<ICard>({
   name: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 30,
+    required: true,
   },
+  /**
+   * ссылка на картинку
+   */
   link: {
     type: String,
     required: true,
@@ -29,10 +35,8 @@ const cardSchema = new Schema({
     ref: 'user',
     default: [],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+}, {
+  timestamps: true,
 });
 
-export const UserSchema = mongoose.model<ICard>('card', cardSchema);
+export const Card = mongoose.model<ICard>('card', cardSchema);
