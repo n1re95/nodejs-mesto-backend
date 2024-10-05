@@ -1,7 +1,7 @@
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { User, type IUser } from '../../models/user';
 
-export const create = async (req: Request<{}, {}, IUser>, res: Response) => {
+export const create = async (req: Request<{}, {}, IUser>, res: Response, next: NextFunction) => {
   try {
     const { body } = req;
     const user = new User({
@@ -10,9 +10,9 @@ export const create = async (req: Request<{}, {}, IUser>, res: Response) => {
       avatar: body.avatar,
     });
     await user.save();
-    res.sendStatus(200);
+    res.status(200);
+    res.send(user);
   } catch (error) {
-    res.status(500);
-    res.json({ error });
+    next(error);
   }
 };
