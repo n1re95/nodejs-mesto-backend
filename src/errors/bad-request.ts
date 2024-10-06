@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes';
 import { ICentralizedError } from '../types';
 
 export class BadRequest extends Error implements ICentralizedError {
@@ -5,6 +6,6 @@ export class BadRequest extends Error implements ICentralizedError {
 
   constructor(message: string) {
     super(message);
-    this.statusCode = 400;
+    this.statusCode = StatusCodes.BAD_REQUEST;
   }
 }

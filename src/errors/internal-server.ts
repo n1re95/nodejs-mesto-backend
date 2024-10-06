@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes';
 import { ICentralizedError } from '../types';
 
 export class InternalServer extends Error implements ICentralizedError {
@@ -5,6 +6,6 @@ export class InternalServer extends Error implements ICentralizedError {
 
   constructor(message: string) {
     super(message);
-    this.statusCode = 500;
+    this.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
   }
 }

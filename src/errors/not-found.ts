@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes';
 import { ICentralizedError } from '../types';
 
 export class NotFound extends Error implements ICentralizedError {
@@ -5,6 +6,6 @@ export class NotFound extends Error implements ICentralizedError {
 
   constructor(message: string) {
     super(message);
-    this.statusCode = 404;
+    this.statusCode = StatusCodes.NOT_FOUND;
   }
 }
