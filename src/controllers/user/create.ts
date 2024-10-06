@@ -10,8 +10,6 @@ export const create = async (req: Request<{}, {}, IUser>, res: Response, next: N
       avatar: body.avatar,
     });
     await user.save();
-    res.status(200);
-    res.send(user);
   } catch (error) {
     next(error);
   }

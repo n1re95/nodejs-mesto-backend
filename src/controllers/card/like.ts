@@ -1,7 +1,11 @@
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Card } from '../../models/card';
 
-export const like = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
+export const like = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const userId = req.user?._id;
     if (!userId) {
@@ -15,7 +19,6 @@ export const like = async (req: Request<{ id: string }>, res: Response): Promise
     res.status(200);
     res.send({ response: card });
   } catch (error) {
-    res.status(500);
-    res.json({ error });
+    next(error);
   }
 };

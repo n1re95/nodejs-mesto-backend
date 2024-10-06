@@ -1,7 +1,11 @@
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Card } from '../../models/card';
 
-export const remove = async (req: Request<{ id: string }>, res: Response) => {
+export const remove = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { id } = req.params;
     const removed = await Card.findOneAndDelete({ _id: id });
@@ -11,7 +15,6 @@ export const remove = async (req: Request<{ id: string }>, res: Response) => {
     res.status(200);
     res.send({ response: removed });
   } catch (error) {
-    res.status(500);
-    res.json({ error: (error instanceof Error && error.message) });
+    next(error);
   }
 };
