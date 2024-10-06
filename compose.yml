@@ -12,4 +12,3 @@ services:
       - ./mongo/.env
     ports:
       - '27017:27017'
-
