@@ -14,5 +14,9 @@ export const errorHandler: ErrorRequestHandler = (error, req, res, next): void =
     return handle(new BadRequest(error.message));
   }
 
+  if (error.statusCode && error.message) {
+    return handle(error);
+  }
+
   return handle(new InternalServer(error.message));
 };
