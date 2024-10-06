@@ -7,7 +7,7 @@ import { BadRequest, InternalServer } from '../errors';
 export const errorHandler: ErrorRequestHandler = (error, req, res, next): void => {
   const handle = ({ statusCode, message }: ICentralizedError) => {
     res.status(statusCode);
-    res.send({ error: message });
+    res.send({ message });
   };
 
   if (error instanceof MongooseError.ValidationError) {
