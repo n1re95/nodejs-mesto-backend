@@ -6,10 +6,11 @@ import {
   like,
   dislike,
 } from '../controllers/card';
+import * as validators from '../validators/card';
 
 const router = express.Router();
 
-router.post('/', create);
+router.post('/', validators.create, create);
 router.get('/', list);
 router.delete('/:id', remove);
 router.put('/:id/like', like);
