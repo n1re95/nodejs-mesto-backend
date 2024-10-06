@@ -10,7 +10,7 @@ import * as validators from '../validators/user';
 
 const router = express.Router();
 
-router.post('/', create);
+router.post('/', validators.create, create);
 router.get('/', list);
 router.get('/:id', getOne);
 router.patch('/me', validators.update, update);
