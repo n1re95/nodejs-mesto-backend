@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import { Card } from '../../models/card';
 
 type TCardCreateBody = {
@@ -15,7 +16,7 @@ export const create = async (
   try {
     const card = new Card(req.body);
     await card.save();
-    res.status(200);
+    res.status(StatusCodes.OK);
     res.send({ response: card });
   } catch (error) {
     next(error);

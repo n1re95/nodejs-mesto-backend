@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import { NotFound } from '../../errors';
 import { USER_NOT_FOUND } from '../../constants/error-text';
 import { User } from '../../models/user';
@@ -16,7 +17,7 @@ export const updateAvatar = async (
     }
     user.avatar = req.body.avatar;
     await user.save();
-    res.status(200);
+    res.status(StatusCodes.OK);
     res.json({ response: user });
   } catch (error) {
     next(error);

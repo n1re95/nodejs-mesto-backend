@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import { User, type IUser } from '../../models/user';
 
 export const create = async (req: Request<{}, {}, IUser>, res: Response, next: NextFunction) => {
@@ -10,7 +11,7 @@ export const create = async (req: Request<{}, {}, IUser>, res: Response, next: N
       avatar: body.avatar,
     });
     await user.save();
-    res.status(200);
+    res.status(StatusCodes.OK);
     res.send({ response: user });
   } catch (error) {
     next(error);
