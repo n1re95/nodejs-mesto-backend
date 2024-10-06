@@ -1,5 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { Card } from '../../models/card';
+import { CARD_NOT_FOUND } from '../../constants/error-text';
+import { NotFound } from '../../errors';
 
 export const dislike = async (
   req: Request<{ id: string }>,
@@ -16,6 +18,9 @@ export const dislike = async (
       { $pull: { likes: userId } }, // добавить _id в массив, если его там нет
       { new: true },
     );
+    if (!card) {
+      throw new NotFound(CARD_NOT_FOUND);
+    }
     res.status(200);
     res.send({ response: card });
   } catch (error) {

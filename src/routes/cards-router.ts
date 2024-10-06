@@ -14,6 +14,6 @@ router.post('/', validators.create, create);
 router.get('/', list);
 router.delete('/:id', remove);
 router.put('/:id/like', validators.like, like);
-router.delete('/:id/like', dislike);
+router.delete('/:id/like', validators.like, dislike);
 
 export const cardsRouter = router;
