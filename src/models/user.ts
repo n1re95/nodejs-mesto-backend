@@ -9,15 +9,15 @@ export interface IUser {
 const userSchema = new Schema({
   name: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 30,
+    required: true,
   },
   about: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 30,
+    required: true,
   },
   avatar: {
     type: String,
