@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import { NotFound } from '../../errors';
+import { USER_NOT_FOUND } from '../../constants/error-text';
 import { User } from '../../models/user';
 
 export const updateAvatar = async (
@@ -10,7 +12,7 @@ export const updateAvatar = async (
     const id = req.user?._id;
     const user = await User.findById(id);
     if (!user) {
-      throw new Error('no user');
+      throw new NotFound(USER_NOT_FOUND);
     }
     user.avatar = req.body.avatar;
     await user.save();
