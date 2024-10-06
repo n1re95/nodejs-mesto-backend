@@ -6,13 +6,14 @@ import {
   updateAvatar,
   update,
 } from '../controllers/user';
+import * as validators from '../validators/user';
 
 const router = express.Router();
 
 router.post('/', create);
 router.get('/', list);
 router.get('/:id', getOne);
-router.patch('/me', update);
+router.patch('/me', validators.update, update);
 router.patch('/me/avatar', updateAvatar);
 
 export const userRouter = router;
